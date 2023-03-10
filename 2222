@@ -44,25 +44,4 @@ wshshell.run "cmd.exe /c print /d:\\DMNM10358\zpl 1.txt",1,true
 FSO.CopyFile "2.txt","1.txt"   
 
 
-set fso = createobject("scripting.filesystemobject")   ' 读取文件 
-set stream = fso.opentextfile("1.txt",1) 
-content = stream.readall() 
-call stream.close()   ' 替换字符串 
-content = replace(content,":CISH",":PCISH")   
-' 保存文件 
-set stream = fso.opentextfile("1.txt",2)
-
-call stream.write(content)
-call stream.close()
-
-set fso = createobject("scripting.filesystemobject")   ' 读取文件 
-set stream = fso.opentextfile("1.txt",1) 
-content = stream.readall() 
-call stream.close()   ' 替换字符串 
-content = replace(content,MyValue,"%%")   
-' 保存文件 
-set stream = fso.opentextfile("1.txt",2)
-
-call stream.write(content)
-call stream.close()
 end if
