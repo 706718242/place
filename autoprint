@@ -1,0 +1,55 @@
+set wshshell=CreateObject("Wscript.Shell")
+Dim FSO
+Set FSO = CreateObject("Scripting.FileSystemObject")
+
+Dim Message, Title, Default, MyValue
+
+Dim num
+num="888"
+Message = ""    ' Set prompt.
+Title = "Print bar"    ' Set title.
+
+Default = ""    ' Set default.
+
+MyValue = InputBox(Message, Title,"")
+if MyValue =num then
+
+' Display dialog box at position 100, 100.
+MyValue = InputBox(Message, Title,"")
+ 
+if MyValue <>"" then
+set fso = createobject("scripting.filesystemobject")   ' 读取文件 
+set stream = fso.opentextfile("1.txt",1) 
+content = stream.readall() 
+call stream.close()   ' 替换字符串 
+content = replace(content,"%%",MyValue)   
+' 保存文件 
+set stream = fso.opentextfile("1.txt",2)
+
+call stream.write(content)
+call stream.close()
+
+set fso = createobject("scripting.filesystemobject")   ' 读取文件 
+set stream = fso.opentextfile("1.txt",1) 
+content = stream.readall() 
+call stream.close()   ' 替换字符串 
+content = replace(content,":PCISH",":CISH")   
+' 保存文件 
+set stream = fso.opentextfile("1.txt",2)
+
+call stream.write(content)
+call stream.close()
+
+'打印
+
+
+wshshell.run "cmd.exe /c print /d:\\DMNM10358\zpl 1.txt",1,true
+
+  
+FSO.CopyFile "2.txt","1.txt" 
+else 
+WSHshell.run "taskkill /im wscript.exe /f ",0,true
+
+end if
+
+end if
