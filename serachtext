@@ -1,0 +1,10 @@
+Dim SearchString, SearchChar, MyPos
+
+SearchString ="XXpXXpXXPXXP"    ' String to search in.
+SearchChar = "XX"    ' Search for "P".
+
+if  Instr(SearchString,"p")="3"  then
+MyValue = InputBox(MyPos,"","")
+end if    
+
+
