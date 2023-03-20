@@ -1,0 +1,4 @@
+var mytable = document.getElementById("OnLine").rows[1].cells[2].innerHTML;
+
+
+console.log(mytable);
