@@ -1,0 +1,15 @@
+^XA 
+^XFR:TEMP_FMT.ZPL
+
+^MD1 //深度
+^PR1  //速度
+^BY1 //模块
+^FO322,8 //xy
+
+^A0N,16,16     //Atn,x,y t条码字体 0-9 A-Z种字体 n方向 xy长宽
+^BCN,18,Y,N,N,   
+^FD>:%%^FS  //条码
+~TA000 //撕纸位置
+
+^IDR:TEMP_FMT.ZPL
+^XZ
