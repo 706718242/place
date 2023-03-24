@@ -115,3 +115,13 @@ function check_blacklist(sites_blacklist) {
   // 如果当前页面的URL不在黑名单中，则返回false
   return false;
 }
+
+//不分大小写查找字符
+const myString = "Hello World15-14497-02";
+const searchQuery = "4497";
+
+if (myString.toLowerCase().includes(searchQuery.toLowerCase())) {
+  console.log("Match found!");
+} else {
+  console.log("No match found.");
+}
