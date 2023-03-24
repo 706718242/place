@@ -1,0 +1,117 @@
+
+
+//获得某行数据
+const table = document.getElementById("OnMachine");
+const row = table.rows[3]; // 获取第四行数据
+const cells = row.cells;
+const cellData = [];
+for (let i = 0; i < cells.length; i++) {
+  cellData.push(cells[i].innerText);
+}
+console.log(cellData);
+
+//获得某列数据
+const table = document.getElementById("my-table");
+const column = 2; // 获取第三列数据
+const cellData = [];
+for (let i = 0; i < table.rows.length; i++) {
+  cellData.push(table.rows[i].cells[column].innerText);
+}
+console.log(cellData);
+
+//定位到目标
+const table = document.getElementById("OnMachine");
+const row = table.rows[8]; // Scroll to the fourth row
+row.scrollIntoView();
+
+
+
+// 获取表格元素  取得表格数据
+    const table = document.getElementById('OnMachine');
+
+    // 获取表头行
+    const headerRow = table.tHead.rows[0];
+
+    // 获取表头单元格
+    const headerCells = Array.from(headerRow.cells);
+
+    // 获取表体行
+    const bodyRows = Array.from(table.tBodies[0].rows);
+
+    // 获取表体单元格
+    const bodyCells = bodyRows.map(row => Array.from(row.cells));
+
+    // 将表头和表体单元格合并为一个数组
+    const cells = [headerCells, ...bodyCells].flat();
+
+    // 提取单元格文本并转换为数组
+    const data = cells.map(cell => cell.textContent.trim());const newWindow = window.open("", "New Window");
+newWindow.document.write(data);
+
+//以新窗口显示表格
+const data = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 },
+];
+
+const table = `
+  <table style="border-collapse: collapse;">
+    <thead>
+      <th style="border: 1px solid black; padding: 0.5em;">Name</th>
+        <th style="border: 1px solid black; padding: 0.5em;">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${data.map(({ name, age }) => `
+        <tr>
+          <td style="border: 1px solid black; padding: 0.5em;">${name}</td>
+          <td style="border: 1px solid black; padding: 0.5em;">${age}</td>
+      `).join("")}
+    </tbody>
+  </table>
+`;
+
+const newWindow = window.open("", "New Window");
+newWindow.document.write(table);
+
+
+
+/**
+ * 检查当前页面是否在黑名单中
+ * @param {String} sites_blacklist - 黑名单字符串
+ * @returns {Boolean}
+ */
+function check_blacklist(sites_blacklist) {
+  // 如果黑名单字符串存在
+  if (sites_blacklist) {
+    // 获取当前页面的URL
+    var url = window.location.href;
+    // 将黑名单字符串按行分割成数组
+    var urls = options.sites_blacklist.split('\n');
+    // 遍历黑名单数组
+    for (var i=0; i < urls.length; i++) {
+      // 去除字符串两端的空格
+      var s = urls[i].replace(/^\s+|\s+$/g, '');
+      // 如果字符串以#开头，则忽略该字符串
+      if (s[0] == '#') {
+        continue;
+      } else if (s[0] == '|') {
+        // 如果字符串以|开头，则将其视为正则表达式
+        var regexp = new RegExp('^' + s.slice(1) + '$');
+        // 如果当前页面的URL与正则表达式匹配，则返回true
+        if (url.match(regexp))
+          return true;
+      } else {
+        // 否则，将字符串中的*替换为.*，并将其视为正则表达式
+        var s2 = escape_regexp(s, ["*"]).replace(new RegExp("\\*", "g"), ".*");
+        var regexp = new RegExp('^' + s2 + '$');
+        // 如果当前页面的URL与正则表达式匹配，则返回true
+        if (url.match(regexp))
+          return true;
+      }
+    }
+  }
+  // 如果当前页面的URL不在黑名单中，则返回false
+  return false;
+}
