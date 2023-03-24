@@ -231,9 +231,9 @@ let resultText = document.getElementById("result");
 let iThRow;
 
 let Qty;
-let Balance;
+let Balance="";
 let Usage;
-let PartN;
+let PartN="";
 
 
 let Qty1;
@@ -248,11 +248,11 @@ for (let i = 1; i < count; i++) {
  console.log(iThRow);
 
  //console.log(document.getElementById("OnMachine").rows[i].cells[1].innerHTML);
-Qty=search.text[0];
- if(Qty=="p"||Qty=="P"){
+//Qty=NULL;
+ //if(Qty==NULL){
     
-   Qty="";
-  console.log(Qty);}
+  // Qty="1";
+  //console.log(Qty);}
 if(iThRow.toLowerCase().includes(search.text.toLowerCase()))  {
 
 //Qty1=i;
