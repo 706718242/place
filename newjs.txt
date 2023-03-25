@@ -125,3 +125,43 @@ if (myString.toLowerCase().includes(searchQuery.toLowerCase())) {
 } else {
   console.log("No match found.");
 }
+
+
+//选中表格文本
+const table = document.getElementById("OnMachine");
+const row = table.rows[0];
+const cell = row.cells[0];
+const range = document.createRange();
+range.selectNodeContents(cell);
+const selection = window.getSelection();
+selection.removeAllRanges();
+selection.addRange(range);
+
+
+//搜索表格并改变目标背景色
+var table = document.getElementById("OnMachine");
+var searchText = "100358";
+var cells = table.getElementsByTagName("td");
+for (var i = 0; i < cells.length; i++) {
+  if (cells[i].innerHTML.indexOf(searchText) !== -1) {
+    cells[i].style.backgroundColor = "yellow";
+
+  }
+}
+
+//恢复原背景
+var table = document.getElementById("myTable");
+var cells = table.getElementsByTagName("td");
+for (var i = 0; i < cells.length; i++) {
+  cells[i].style.backgroundColor = "";
+
+}
+
+//捕获键盘码
+document.addEventListener('keydown', (event) => {
+  console.log(event.keyCode);
+});
+//捕获键盘
+document.addEventListener('keydown', (event) => {
+  console.log(event.key);
+});
