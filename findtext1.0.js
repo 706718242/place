@@ -1,7 +1,8 @@
+
 box = document.createElement('tbox');
 box.id = 'tboxid';
 function addStyle() {
-  var head = document.getElementsByTagName('head')[0];
+  //var head = document.getElementsByTagName('head')[0];
  // if (head) {
    //console.log("ok");
  // var style = document.createElement("style");
@@ -62,7 +63,7 @@ var table = document.getElementById("OnMachine");
 var cells = table.getElementsByTagName("td");
 for (var i = 0; i < ic.length; i++) {
     //if(search==1)
-    cells[ic[i]].style.backgroundColor = "";
+   //cells[ic[i]].style.backgroundColor = "";
 
 
  
@@ -76,11 +77,19 @@ for (var i = 0; i < ic.length; i++) {
  
 }
 
-var intervalId;
+var intervalId,intervalId1;
+
 document.addEventListener('keydown', (event) => {
- console.log(event.key);
+console.log(event.key);
+ console.log(event.keyCode);
+ console.log(keyC);
+
+
+ 
  clearInterval(intervalId);
+ clearInterval(intervalId1);
  intervalId = setInterval(function() { tclear(); }, 10000);
+ intervalId1 = setInterval(function() { clear(); }, 30000);
  
   if (event.keyCode>47&&event.keyCode<58||event.keyCode=="189"||event.keyCode>"64"&&event.keyCode<"91") { 
   
@@ -109,18 +118,7 @@ document.addEventListener('keydown', (event) => {
   }
 //Enter
  if(event.key=="Enter"){
-/*
-var table = document.getElementById("OnMachine");
-var searchText = keyC.join('');
-var cells = table.getElementsByTagName("td");
-for (var i = 0; i < cells.length; i++) {
- 
-  if (cells[i].innerHTML.indexOf(searchText) !== -1) {
-    cells[i].style.backgroundColor = "yellow";
-    cells[i].scrollIntoView();
-  }
-}
-*/
+if(keyC!=""){
 clear() ;
   var table = document.getElementById("OnMachine");
 var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
@@ -134,17 +132,32 @@ for (var i = 0; i < cells.length; i++) {
     cells[i].scrollIntoView();
   }
 }
-search=1;
+
 console.log(ic);
-  
+}
  }
 
 
+ if(event.keyCode==32){
+
+clear() ;
+  var table = document.getElementById("OnMachine");
+var searchText = "14497".toLowerCase(); // 将搜索文本转换为小写字母
+var cells = table.getElementsByTagName("td");
+for (var i = 0; i < cells.length; i++) {
+  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+  if (cellText.indexOf(searchText) !== -1) {
+   ic.push(i);
+
+    cells[i].style.backgroundColor = "#ffebb5";
+    cells[i].scrollIntoView();
+  }
+}
+
+console.log(ic);
+}
+ 
+
+ 
  
 });
-
-
-
- 
-
-//clearInterval();
