@@ -1,47 +1,35 @@
 
-box = document.createElement('tbox');
-box.id = 'tboxid';
+
+  box = document.createElement('tbox');
+  box.id = 'tboxid';
 function addStyle() {
-  //var head = document.getElementsByTagName('head')[0];
- // if (head) {
-   //console.log("ok");
- // var style = document.createElement("style");
-   //style.type = "text/css";
-   // style.appendChild(document.createTextNode(css));
-    //head.appendChild(style);
-
- //const styleElement = document.createElement('style');
-//styleElement.textContent = styles;
-//document.head.appendChild(styleElement);
-document.documentElement.appendChild(box);
-
- box.innerHTML = "";
- box.style.position= "fixed";
-box.style.top = "0";
+ 
+  document.documentElement.appendChild(box);
+  box.innerHTML = "";
+  box.style.position= "fixed";
+  box.style.top = "0";
 //box.style.left = "0";
-   box.style.right= "0";
-  box.style.width= "200px";
+  box.style.right= "0";
+  box.style.width= "390px";
   //box.style.border= 3px solid #73AD21;
-   box.style.zIndex = "9999";
+  box.style.zIndex = "9999";
   box.style['top'] = '';
-   box.style.display = 'block';
-   box.style.fontSize = '20px';
-
-   //box.style['background-color'] = "#fff";
+  box.style.display = 'block';
+  box.style.fontSize = '18px';
+//box.style['background-color'] = "#fff";
 document.getElementById(box.id).style.color = "white";
 }
 
-addStyle();
+ addStyle();
  
 var ic=[];
 var keyC=[];
 var tout=0;
-var search=0;
+var search=0,slot=0;;
 
 
 function clear() {
  
-  // code to be executed every 20 seconds
 var table = document.getElementById("OnMachine");
 var cells = table.getElementsByTagName("td");
 for (var i = 0; i < ic.length; i++) {
@@ -50,7 +38,7 @@ for (var i = 0; i < ic.length; i++) {
  }
  
  console.log("clean");
-
+search=1;
  //document.getElementById(box.id).innerHTML = "";
 
   
@@ -58,7 +46,6 @@ for (var i = 0; i < ic.length; i++) {
 
 function tclear() {
 
-  // code to be executed every 20 seconds
 var table = document.getElementById("OnMachine");
 var cells = table.getElementsByTagName("td");
 for (var i = 0; i < ic.length; i++) {
@@ -91,7 +78,7 @@ console.log(event.key);
  intervalId = setInterval(function() { tclear(); }, 10000);
  intervalId1 = setInterval(function() { clear(); }, 30000);
  
-  if (event.keyCode>47&&event.keyCode<58||event.keyCode=="189"||event.keyCode>"64"&&event.keyCode<"91") { 
+  if (event.keyCode!=32&&event.keyCode>47&&event.keyCode<58||event.keyCode=="189"||event.keyCode>"64"&&event.keyCode<"91") { 
   
     keyC.push(event.key);
     //console.log(event.key);
@@ -120,7 +107,7 @@ console.log(event.key);
  if(event.key=="Enter"){
 if(keyC!=""){
 clear() ;
-  var table = document.getElementById("OnMachine");
+var table = document.getElementById("OnMachine");
 var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
 var cells = table.getElementsByTagName("td");
 for (var i = 0; i < cells.length; i++) {
@@ -128,17 +115,42 @@ for (var i = 0; i < cells.length; i++) {
   if (cellText.indexOf(searchText) !== -1) {
    ic.push(i);
 
-    cells[i].style.backgroundColor = "#ffebb5";
-    cells[i].scrollIntoView();
+   // cells[i].style.backgroundColor = "#ffebb5";
+   // cells[i].scrollIntoView();
   }
 }
 
-console.log(ic);
+ console.log(ic);
+ search=1;    //完成搜索标记
 }
+  console.log(search);
+  console.log(slot);
+  console.log(ic.length);
+  
+  if(search==1&&(slot<ic.length)){
+   console.log("!");
+   var table = document.getElementById("OnMachine");
+var cells = table.getElementsByTagName("td");
+cells[ic[slot]].style.backgroundColor = "#ffebb5";
+cells[ic[slot]].scrollIntoView();
+    slot++;
+  }
+  if(search==1&&slot>ic.length){
+    console.log("!1");
+   var table = document.getElementById("OnMachine");
+var cells = table.getElementsByTagName("td");
+
+
+    localtion=0;
+   cells[ic[slot]].style.backgroundColor = "#ffebb5";
+   cells[ic[slot]].scrollIntoView();
+  }
+
+  
  }
 
 
- if(event.keyCode==32){
+ if(event.keyCode==36){
 
 clear() ;
   var table = document.getElementById("OnMachine");
@@ -149,6 +161,8 @@ for (var i = 0; i < cells.length; i++) {
   if (cellText.indexOf(searchText) !== -1) {
    ic.push(i);
 
+   
+    document.getElementById(box.id).innerHTML = cells[i].innerHTML+'  '+cells[i+2].innerHTML+'  '+cells[i+3].innerHTML+'  '+cells[i+4].innerHTML+"已完成"+(cells[i+2].innerHTML-cells[i+3].innerHTML)+"块";
     cells[i].style.backgroundColor = "#ffebb5";
     cells[i].scrollIntoView();
   }
