@@ -179,3 +179,9 @@ document.addEventListener('keydown', (event) => {
   // Append a text node to the cell
   let newText = document.createTextNode("New bottom row");
   newCell.appendChild(newText);
+  
+  
+  
+  
+  // 某行插入新列
+  let tableRef = document.getElementById("OnLine").rows[1].insertCell(0);
