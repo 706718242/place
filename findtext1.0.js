@@ -1,7 +1,12 @@
 
-
   box = document.createElement('tbox');
   box.id = 'tboxid';
+
+
+
+
+
+
 function addStyle() {
  
   document.documentElement.appendChild(box);
@@ -19,9 +24,12 @@ function addStyle() {
 //box.style['background-color'] = "#fff";
 document.getElementById(box.id).style.color = "white";
 }
-
+f() ;
  addStyle();
- 
+
+
+
+
 var ic=[];
 var keyC=[];
 var tout=0;
@@ -132,7 +140,7 @@ for (var i = 0; i < cells.length; i++) {
    var table = document.getElementById("OnMachine");
 var cells = table.getElementsByTagName("td");
 cells[ic[slot]].style.backgroundColor = "#ffebb5";
-cells[ic[slot]].scrollIntoView();
+cells[ic[slot]].scrollIntoView({ block: "center" });
     slot++;
   }
   if(search==1&&slot>ic.length){
@@ -143,7 +151,7 @@ var cells = table.getElementsByTagName("td");
 
     localtion=0;
    cells[ic[slot]].style.backgroundColor = "#ffebb5";
-   cells[ic[slot]].scrollIntoView();
+   cells[ic[slot]].scrollIntoView({ block: "center" });
   }
 
   
@@ -152,11 +160,11 @@ var cells = table.getElementsByTagName("td");
 
  if(event.keyCode==36){
 
-clear() ;
-  var table = document.getElementById("OnMachine");
-var searchText = "14497".toLowerCase(); // 将搜索文本转换为小写字母
-var cells = table.getElementsByTagName("td");
-for (var i = 0; i < cells.length; i++) {
+ clear() ;
+ var table = document.getElementById("OnMachine");
+ var searchText = "14497".toLowerCase(); // 将搜索文本转换为小写字母
+ var cells = table.getElementsByTagName("td");
+ for (var i = 0; i < cells.length; i++) {
   var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
   if (cellText.indexOf(searchText) !== -1) {
    ic.push(i);
@@ -164,7 +172,7 @@ for (var i = 0; i < cells.length; i++) {
    
     document.getElementById(box.id).innerHTML = cells[i].innerHTML+'  '+cells[i+2].innerHTML+'  '+cells[i+3].innerHTML+'  '+cells[i+4].innerHTML+"已完成"+(cells[i+2].innerHTML-cells[i+3].innerHTML)+"块";
     cells[i].style.backgroundColor = "#ffebb5";
-    cells[i].scrollIntoView();
+    cells[i].scrollIntoView({ block: "center" });
   }
 }
 
@@ -175,3 +183,5 @@ console.log(ic);
  
  
 });
+//document.getElementById("OnMachine").deleteRow(1);
+//<>37 39
