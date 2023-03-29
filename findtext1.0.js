@@ -1,14 +1,5 @@
-
-  box = document.createElement('tbox');
+ box = document.createElement('tbox');
   box.id = 'tboxid';
-
-
-
-
-
-
-function addStyle() {
- 
   document.documentElement.appendChild(box);
   box.innerHTML = "";
   box.style.position= "fixed";
@@ -22,31 +13,28 @@ function addStyle() {
   box.style.display = 'block';
   box.style.fontSize = '18px';
 //box.style['background-color'] = "#fff";
-document.getElementById(box.id).style.color = "white";
-}
-f() ;
- addStyle();
+//document.getElementById(box.id).style.color = "white";
+  document.getElementById(box.id).style.color = "block";
 
 
 
-
-var ic=[];
-var keyC=[];
-var tout=0;
-var search=0,slot=0;;
+ var ic=[];
+ var keyC=[];
+ var tout=0;
+ var search=0,slot=0;;
 
 
 function clear() {
  
-var table = document.getElementById("OnMachine");
-var cells = table.getElementsByTagName("td");
-for (var i = 0; i < ic.length; i++) {
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
+  for (var i = 0; i < ic.length; i++) {
  
-   cells[ic[i]].style.backgroundColor = "";
+  cells[ic[i]].style.backgroundColor = "";
  }
  
- console.log("clean");
-search=1;
+  console.log("clean");
+  search=1;
  //document.getElementById(box.id).innerHTML = "";
 
   
@@ -54,28 +42,17 @@ search=1;
 
 function tclear() {
 
-var table = document.getElementById("OnMachine");
-var cells = table.getElementsByTagName("td");
-for (var i = 0; i < ic.length; i++) {
-    //if(search==1)
-   //cells[ic[i]].style.backgroundColor = "";
-
-
- 
- }
  keyC.length = 0;
  console.log("clean");
-
  document.getElementById(box.id).innerHTML = "";
 
-  
- 
 }
+
 
 var intervalId,intervalId1;
 
-document.addEventListener('keydown', (event) => {
-console.log(event.key);
+ document.addEventListener('keydown', (event) => {
+ console.log(event.key);
  console.log(event.keyCode);
  console.log(keyC);
 
@@ -112,13 +89,13 @@ console.log(event.key);
    clearInterval(intervalId);
   }
 //Enter
- if(event.key=="Enter"){
-if(keyC!=""){
-clear() ;
-var table = document.getElementById("OnMachine");
-var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
-var cells = table.getElementsByTagName("td");
-for (var i = 0; i < cells.length; i++) {
+  if(event.key=="Enter"){
+  if(keyC!=""){
+  clear() ;
+  var table = document.getElementById("OnMachine");
+  var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
+  var cells = table.getElementsByTagName("td");
+  for (var i = 0; i < cells.length; i++) {
   var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
   if (cellText.indexOf(searchText) !== -1) {
    ic.push(i);
@@ -136,17 +113,17 @@ for (var i = 0; i < cells.length; i++) {
   console.log(ic.length);
   
   if(search==1&&(slot<ic.length)){
-   console.log("!");
-   var table = document.getElementById("OnMachine");
-var cells = table.getElementsByTagName("td");
-cells[ic[slot]].style.backgroundColor = "#ffebb5";
-cells[ic[slot]].scrollIntoView({ block: "center" });
+  console.log("!");
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
+  cells[ic[slot]].style.backgroundColor = "#ffebb5";
+  cells[ic[slot]].scrollIntoView({ block: "center" });
     slot++;
   }
   if(search==1&&slot>ic.length){
     console.log("!1");
-   var table = document.getElementById("OnMachine");
-var cells = table.getElementsByTagName("td");
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
 
 
     localtion=0;
@@ -162,17 +139,43 @@ var cells = table.getElementsByTagName("td");
 
  clear() ;
  var table = document.getElementById("OnMachine");
- var searchText = "14497".toLowerCase(); // 将搜索文本转换为小写字母
+ var searchText = "2905".toLowerCase(); // 将搜索文本转换为小写字母
  var cells = table.getElementsByTagName("td");
  for (var i = 0; i < cells.length; i++) {
-  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
-  if (cellText.indexOf(searchText) !== -1) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText) !== -1) {
    ic.push(i);
 
    
     document.getElementById(box.id).innerHTML = cells[i].innerHTML+'  '+cells[i+2].innerHTML+'  '+cells[i+3].innerHTML+'  '+cells[i+4].innerHTML+"已完成"+(cells[i+2].innerHTML-cells[i+3].innerHTML)+"块";
     cells[i].style.backgroundColor = "#ffebb5";
     cells[i].scrollIntoView({ block: "center" });
+   
+  }
+}
+
+
+  
+ var searchText = "5t1".toLowerCase(); // 将搜索文本转换为小写字母
+ 
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText) !== -1) {
+   
+  document.getElementById("OnMachine").deleteRow(i+1);
+   
+   
+  }
+ }
+  var searchText = "5t2".toLowerCase(); // 将搜索文本转换为小写字母
+ 
+  for (var i = 0; i < cells.length; i++) {
+  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+  if (cellText.indexOf(searchText) !== -1) {
+   
+  document.getElementById("OnMachine").deleteRow(i+1);
+ 
+   
   }
 }
 
@@ -181,7 +184,8 @@ console.log(ic);
  
 
  
- 
 });
+
+
 //document.getElementById("OnMachine").deleteRow(1);
 //<>37 39
