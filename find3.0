@@ -331,3 +331,4 @@ window.onload = (event) => {
 };
 */
 //如何取消settimeout
+//增加多颜色
