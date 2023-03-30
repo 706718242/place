@@ -24,7 +24,7 @@ document.getElementById(box.id).style.color = "white";
  var keyC=[];
  var tout=0;
  var search=0,slot=0;;
- var intervalId,intervalId1;
+ //var intervalId,intervalId1;
 
 
 window.onload = (event) => {
@@ -57,7 +57,7 @@ function clean() {
 function tclean() {
 
  keyC.length = 0;
- console.log("clean");
+ console.log("tclean");
  document.getElementById(box.id).innerHTML = "";
 
 }
@@ -74,9 +74,7 @@ function tclean() {
  setTimeout(function() {''
       tclean();
     },10 * 1000);
-  setTimeout(function() {''
-      clean();
-    },30 * 1000);
+
 
   
   if (event.keyCode!=32&&event.keyCode>47&&event.keyCode<58||event.keyCode=="189"||event.keyCode>"64"&&event.keyCode<"91") { 
@@ -103,7 +101,7 @@ function tclean() {
 
    //keyC = "";
    console.log(keyC);
-   clearInterval(intervalId);
+  
   }
 //Enter
   if(event.key=="Enter"){
@@ -129,25 +127,26 @@ if(frist==0){ frist=1;cells[i].scrollIntoView({ block: "center" });console.log("
  console.log(ic);
  search=1;    //完成搜索标记
 }
+  setTimeout(function() {''
+      clean();
+    },30 * 1000);
   console.log(search);
   console.log(slot);
   console.log(ic.length);
-  
-  if(search==1&&(slot<ic.length)){
-  console.log("!");
   var table = document.getElementById("OnMachine");
   var cells = table.getElementsByTagName("td");
+ 
+   if(search==1&&(slot<ic.length)){
+  console.log("!");
+
   cells[ic[slot]].style.backgroundColor = "#ffebb5";
   cells[ic[slot]].scrollIntoView({ block: "center" });
     slot++;
   }
   if(search==1&&slot>ic.length){
     console.log("!1");
-  var table = document.getElementById("OnMachine");
-  var cells = table.getElementsByTagName("td");
 
 
-    localtion=0;
    cells[ic[slot]].style.backgroundColor = "#ffebb5";
    cells[ic[slot]].scrollIntoView({ block: "center" });
   }
@@ -331,3 +330,4 @@ window.onload = (event) => {
   console.log('page is fully loaded');
 };
 */
+//如何取消settimeout
