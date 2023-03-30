@@ -1,3 +1,24 @@
+使用 WebSocket API 可以在浏览器端实现与服务器之间的实时全双工通信。WebSocket API 可以直接在浏览器端使用，不需要额外的库或框架。 以下是使用 WebSocket API 的基本示例代码： 1. 创建 WebSocket 对象，并与指定的服务器建立连接： ```javascript const socket = new WebSocket('ws://example.com/socketserver'); ``` 在上面的示例中，通过 WebSocket 构造函数创建了一个 WebSocket 对象，并将 WebSocket 服务器的地址传递给构造函数。 2. 监听 WebSocket 对象的事件： ```javascript socket.addEventListener('open', function (event) { console.log('WebSocket connection is open.'); }); socket.addEventListener('message', function (event) { console.log('Received Message: ' + event.data); }); socket.addEventListener('close', function (event) { console.log('WebSocket connection is 
+的事件。当连接打开时，会触发 `open` 事件，当接收到消息时会触发 `message` 事件，当连接关闭时会触发 `close` 事件。在事件处理函数中，可以在控制台中输出日志信息，并进行相应的操作，例如更新用户界面等。 3. 向服务器发送消息： ```javascript socket.send('Hello, World!'); ``` 在上面的示例中，通过 `socket.send()` 方法来向 WebSocket 服务器发送消息。可以发送文本或二进制数据。 在使用 WebSocket API 进行通信时，需要注意以下问题： - WebSocket API 适用于在浏览器端和服务器端之间进行实时全双工通信，但是并不是所有的浏览器都支持 WebSocket API，需要进行兼容性处理； - WebSocket API 支持传输文本和二进制数据，但是需要注意数据格式和大小，以避免影响通信性能； - WebSocket API 在进行跨域通信时，需要在服务器端设置 CORS 相关响应头，以允许来自其他域名的 JavaScript 代码进行 WebSocket 通信。
+
+
+
+是的，Microsoft Edge 支持使用 WebSocket API 进行实时全双工通信。WebSocket API 可以在支持 WebSocket 协议的浏览器中运行，包括 Microsoft Edge、Google Chrome、Mozilla Firefox、Apple Safari 等主流浏览器。 可以使用类似以下示例代码来创建 WebSocket 连接并发送消息： ```javascript const ws = new WebSocket('wss://example.com/socketserver'); ws.onopen = function(event) { console.log('WebSocket connection is open.'); ws.send('Hello, world!'); }; ws.onmessage = function(event) { console.log(`Received Message: ${event.data}`); }; ws.onerror = function(event) { console.error('WebSocket error occurred.'); }; ws.onclose = function(event) { console.log('WebSocket connection is closed.'); }; ``` 以上示例代码创建了一个 WebSocket 对象，并使用该对象连接到服务器。当连接建立时，使用 `onopen` 事件发送消息，当接收到消息时使用 `onmessage` 事件处理接收到的消息。如果在建立连接或通信过程中发生错误，可以使用 `onerror` 事件进行处理；如果连接关闭，可以使用 `onclose` 事件进行处理。 请注意，在使用 WebSocket API 进行通信时，需要注意浏览器兼容性，尤其是在处理二进制数据类型时。此外，需要根据具体情况检查服务器是否支持 WebSocket 协议，以及是否需要在服务器端进行特殊配置。
+
+const socket = new WebSocket('ws://example.com/socketserver');
+socket.addEventListener('open', function (event) {
+  console.log('WebSocket connection is open.');
+});
+
+socket.addEventListener('message', function (event) {
+  console.log('Received Message: ' + event.data);
+});
+
+socket.addEventListener('close', function (event) {
+  console.log('WebSocket connection is closed.');
+});
+
+socket.send('Hello, World!');
 // 向目标窗口发送消息
 var targetWindow = window.parent; // 目标窗口对象
 var message = 'Hello, world!'; // 要发送的数据
