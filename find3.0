@@ -1,0 +1,333 @@
+
+if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
+{
+  console.log("start");
+  box = document.createElement('tbox');
+  box.id = 'tboxid';
+  document.documentElement.appendChild(box);
+  box.innerHTML = "";
+  box.style.position= "fixed";
+  box.style.top = "0";
+//box.style.left = "0";
+  box.style.right= "0";
+  box.style.width= "390px";
+  //box.style.border= 3px solid #73AD21;
+  box.style.zIndex = "9999";
+  box.style['top'] = '';
+  box.style.display = 'block';
+  box.style.fontSize = '18px';
+//box.style['background-color'] = "#fff";
+document.getElementById(box.id).style.color = "white";
+ // document.getElementById(box.id).style.color = "block";
+
+ var ic=[];
+ var keyC=[];
+ var tout=0;
+ var search=0,slot=0;;
+ var intervalId,intervalId1;
+
+
+window.onload = (event) => {
+console.log('page is fully loaded');
+ 
+if(sessionStorage.getItem("flag")=="1"){
+
+cleano();
+}
+
+};
+
+
+function clean() {
+ 
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
+  for (var i = 0; i < ic.length; i++) {
+ 
+  cells[ic[i]].style.backgroundColor = "";
+ }
+ 
+  console.log("clean");
+  search=1;
+ //document.getElementById(box.id).innerHTML = "";
+
+  
+}
+
+function tclean() {
+
+ keyC.length = 0;
+ console.log("clean");
+ document.getElementById(box.id).innerHTML = "";
+
+}
+
+
+
+
+ document.addEventListener('keydown', (event) => {
+ console.log(event.key);
+ console.log(event.keyCode);
+ console.log(keyC);
+
+
+ setTimeout(function() {''
+      tclean();
+    },10 * 1000);
+  setTimeout(function() {''
+      clean();
+    },30 * 1000);
+
+  
+  if (event.keyCode!=32&&event.keyCode>47&&event.keyCode<58||event.keyCode=="189"||event.keyCode>"64"&&event.keyCode<"91") { 
+ 
+    keyC.push(event.key);
+   //
+    console.log(keyC);
+    
+  
+    //document.getEl  keyC= String.fromCharCode(event.keyCode);ementById(box.id).style.display = 'block';
+   //document.getElementById(box.id).style.color = "blue";
+  // keyC= String.fromCharCode(keyC);
+   //console.log(keyC);
+    document.getElementById(box.id).innerHTML = keyC.join('');
+   
+  }
+ 
+  if(event.key=="Backspace"){
+   keyC.pop();
+   document.getElementById(box.id).innerHTML = keyC.join('');
+
+   //if(keyC.join('')=="123")document.getElementById(box.id).style.color = "red";
+ // document.getElementById(box.id).style.display = 'none';
+
+   //keyC = "";
+   console.log(keyC);
+   clearInterval(intervalId);
+  }
+//Enter
+  if(event.key=="Enter"){
+   var frist=0;
+  if(keyC!=""){
+  clean() ;
+  var table = document.getElementById("OnMachine");
+  var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
+  var cells = table.getElementsByTagName("td");
+  for (var i = 0; i < cells.length; i++) {
+  var cellText = cells[i].innerText.toLowerCase(); // 将单元格文本转换为小写字母
+  if (cellText.indexOf(searchText) !== -1) {
+   ic.push(i);
+if(frist==0){ frist=1;cells[i].scrollIntoView({ block: "center" });console.log("i");
+     
+             cells[i].style.backgroundColor = "#ffebb5";
+    
+            
+            }
+  }
+}
+
+ console.log(ic);
+ search=1;    //完成搜索标记
+}
+  console.log(search);
+  console.log(slot);
+  console.log(ic.length);
+  
+  if(search==1&&(slot<ic.length)){
+  console.log("!");
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
+  cells[ic[slot]].style.backgroundColor = "#ffebb5";
+  cells[ic[slot]].scrollIntoView({ block: "center" });
+    slot++;
+  }
+  if(search==1&&slot>ic.length){
+    console.log("!1");
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
+
+
+    localtion=0;
+   cells[ic[slot]].style.backgroundColor = "#ffebb5";
+   cells[ic[slot]].scrollIntoView({ block: "center" });
+  }
+
+  
+ }
+
+//是否只显示当前区
+ if(event.keyCode==36){
+ if(sessionStorage.getItem("flag")!="1"){
+ sessionStorage.setItem("flag", "1");
+ cleano();
+}else sessionStorage.setItem("flag", "0");
+
+
+ 
+
+
+/*
+ var table = document.getElementById("OnMachine");
+ var searchText = "14497".toLowerCase(); // 将搜索文本转换为小写字母
+ var cells = table.getElementsByTagName("td");
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText) !== -1) {
+    ic.push(i);
+   
+    document.getElementById(box.id).innerHTML = cells[i].innerHTML+'  '+cells[i+2].innerHTML+'  '+cells[i+3].innerHTML+'  '+cells[i+4].innerHTML+'<br>已完成'+(cells[i+2].innerHTML-cells[i+3].innerHTML)+'  剩余'+cells[i+3].innerHTML;
+    cells[i].style.backgroundColor = "#ffebb5";
+    cells[i].scrollIntoView({ block: "center" });
+   
+  }
+}  
+  */
+
+//console.log(window.location.href);
+}
+ 
+
+ 
+});
+}
+
+
+ 
+function cleano() {
+ 
+ var table = document.getElementById("OnLine");
+ var searchText = "5t1".toLowerCase(); // 将搜索文本转换为小写字母
+ var cells = table.getElementsByTagName("tr");
+ //for(var j;j<)
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText) !== -1) {
+   console.log(i);
+  document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+  }
+ }
+
+  
+  var searchText = "5t2".toLowerCase(); // 将搜索文本转换为小写字母
+ 
+  for (var i = 0; i < cells.length; i++) {
+  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+  if (cellText.indexOf(searchText) !== -1) {
+   
+    document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+  }
+  }
+
+ var searchText = "6t1".toLowerCase(); // 将搜索文本转换为小写字母
+ 
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText) !== -1) {
+   
+    document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+   
+  }
+ }
+  var searchText = "6t2".toLowerCase(); // 将搜索文本转换为小写字母
+ 
+  for (var i = 0; i < cells.length; i++) {
+  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+  if (cellText.indexOf(searchText) !== -1) {
+   
+   document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+  }
+  }
+
+  var searchText = "7T1".toLowerCase(); // 将搜索文本转换为小写字母
+ 
+  for (var i = 0; i < cells.length; i++) {
+  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+  if (cellText.indexOf(searchText) !== -1) {
+   
+   document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+  }
+  }
+
+
+
+}
+ 
+
+
+
+//perpetual data
+//R/W data
+//localStorage.setItem("myCat", "Tom");
+//const cat = localStorage.getItem("myCat");console.log(cat);
+
+//remove data
+//localStorage.removeItem("myCat");
+//localStorage.clear();
+
+
+//tmp data
+// Save data to sessionStorage
+//sessionStorage.setItem("key", "value");
+
+// Get saved data from sessionStorage
+//let data = sessionStorage.getItem("key");console.log(data);
+
+// Remove saved data from sessionStorage
+//sessionStorage.removeItem("key");
+
+// Remove all saved data from sessionStorage
+//sessionStorage.clear();
+
+
+
+
+//document.getElementById("OnMachine").deleteRow(1);
+//<>37 39
+/* //大到小排序
+ var a =["1","5","2","9","8"];
+ var max = 0; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }
+*/
+/* //小到大排序
+ var a =["1","5","2","9","8"];
+ var max = 0; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }
+*/
+
+
+
+
+//等待页面加载完成开始执行
+/*window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+
+
+document.getElementById("OnLine").deleteRow(1);
+ 
+});
+
+
+window.onload = (event) => {
+  console.log('page is fully loaded');
+};
+*/
