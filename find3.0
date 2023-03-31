@@ -301,3 +301,52 @@ window.onload = (event) => {
 
 //document.getElementById("OnMachine").deleteRow(1);
 //<>37 39
+//字符串转整数
+//let myString = parseInt("384.75a");
+//console.log(myString);
+
+
+
+//高亮实现  创建span元素与id
+/*
+
+
+var content = document.getElementById("OnMachine");
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  if (window.find("2905")) {
+    var range = selection.getRangeAt(0);
+    var highlight = document.createElement("span");
+    //highlight.classList.add("mclass");
+    highlight.setAttribute("id", "mdiv");
+    highlight.style.backgroundColor = "yellow";
+    highlight.appendChild(range.extractContents());
+    range.insertNode(highlight);
+  }
+
+
+  遍历所有高亮元素，移除其高亮样式
+var highlightElements = document.getElementsByClassName("highlight");
+highlightElements.forEach(function(element) {
+  element.style.backgroundColor = "";
+});
+// 或
+for (var i = 0; i < highlightElements.length; i++) {
+  highlightElements[i].style.backgroundColor = "";
+}
+
+通过重置 CSS 类名来移除相应的高亮效果
+
+highlightElements.forEach(function(element) {
+  element.className = "reset-highlight";
+});
+
+
+
+
+
+
+
+
+
+*/
