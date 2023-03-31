@@ -1,6 +1,6 @@
 
-if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
-{
+//if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
+//{
   console.log("start");
   box = document.createElement('tbox');
   box.id = 'tboxid';
@@ -17,24 +17,24 @@ if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Proje
   box.style.display = 'block';
   box.style.fontSize = '18px';
 //box.style['background-color'] = "#fff";
-document.getElementById(box.id).style.color = "white";
- // document.getElementById(box.id).style.color = "block";
+//document.getElementById(box.id).style.color = "white";
+  document.getElementById(box.id).style.color = "block";
 
  var ic=[];
  var keyC=[];
  var tout=0;
  var search=0,slot=0;;
- //var intervalId,intervalId1;
+ var tid,tid1;
 
 
 window.onload = (event) => {
 console.log('page is fully loaded');
- 
+ /*
 if(sessionStorage.getItem("flag")=="1"){
 
 cleano();
 }
-
+*/
 };
 
 
@@ -47,8 +47,10 @@ function clean() {
   cells[ic[i]].style.backgroundColor = "";
  }
  
-  console.log("clean");
-  search=1;
+  console.log("cleanSearch");
+  slot=0;
+ ic.length=0;
+  search=0;
  //document.getElementById(box.id).innerHTML = "";
 
   
@@ -57,7 +59,7 @@ function clean() {
 function tclean() {
 
  keyC.length = 0;
- console.log("tclean");
+ console.log("cleanflag");
  document.getElementById(box.id).innerHTML = "";
 
 }
@@ -70,10 +72,11 @@ function tclean() {
  console.log(event.keyCode);
  console.log(keyC);
 
-
- setTimeout(function() {''
-      tclean();
-    },10 * 1000);
+ clearTimeout(tid);
+ clearTimeout(tid1);
+ tid=setTimeout(function() {'' 
+  tclean();
+      },10 * 1000);
 
 
   
@@ -101,13 +104,14 @@ function tclean() {
 
    //keyC = "";
    console.log(keyC);
-  
+   search=0;
   }
 //Enter
   if(event.key=="Enter"){
-   var frist=0;
-  if(keyC!=""){
+  //var frist=0;
+  if(keyC!=""&&search==0){
   clean() ;
+   
   var table = document.getElementById("OnMachine");
   var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
   var cells = table.getElementsByTagName("td");
@@ -115,54 +119,57 @@ function tclean() {
   var cellText = cells[i].innerText.toLowerCase(); // 将单元格文本转换为小写字母
   if (cellText.indexOf(searchText) !== -1) {
    ic.push(i);
-if(frist==0){ frist=1;cells[i].scrollIntoView({ block: "center" });console.log("i");
-     
-             cells[i].style.backgroundColor = "#ffebb5";
-    
-            
-            }
-  }
+//if(frist==0){ 
+ //frist=1;cells[i].scrollIntoView({ block: "center" });
+   //console.log("i");   
+ cells[i].style.backgroundColor = "#ffebb5";
+   }
+ }
 }
 
- console.log(ic);
- search=1;    //完成搜索标记
-}
-  setTimeout(function() {''
+  search=1;    //完成搜索标记
+
+  tid1=setTimeout(function() {''
       clean();
     },30 * 1000);
+   
   console.log(search);
   console.log(slot);
   console.log(ic.length);
+
+
   var table = document.getElementById("OnMachine");
-  var cells = table.getElementsByTagName("td");
  
-   if(search==1&&(slot<ic.length)){
-  console.log("!");
+  var cells = table.getElementsByTagName("td");
 
-  cells[ic[slot]].style.backgroundColor = "#ffebb5";
-  cells[ic[slot]].scrollIntoView({ block: "center" });
-    slot++;
-  }
-  if(search==1&&slot>ic.length){
-    console.log("!1");
+   if(slot>0){
+   //cells[ic[slot-1]].style.backgroundColor = ""; 
+   cells[ic[slot-1]].style.textDecoration = "none";
+  }else{ //cells[ic[slot]].style.backgroundColor = "";
+         cells[ic[slot]].style.textDecoration = "none";}
+  if(slot==ic.length){    
+     slot=0;
+  } 
 
+   
 
-   cells[ic[slot]].style.backgroundColor = "#ffebb5";
-   cells[ic[slot]].scrollIntoView({ block: "center" });
-  }
-
-  
+  //cells[ic[slot]].style.backgroundColor = "#ffebb5";
+  cells[ic[slot]].scrollIntoView();
+  cells[ic[slot]].style.textDecoration = "underline";
+  //cells[ic[slot]].innerHTML = "<u>" + cells[ic[slot]].innerHTML + "</u>";
+  slot++;
+    
  }
 
 //是否只显示当前区
  if(event.keyCode==36){
- if(sessionStorage.getItem("flag")!="1"){
+/* if(sessionStorage.getItem("flag")!="1"){
  sessionStorage.setItem("flag", "1");
  cleano();
 }else sessionStorage.setItem("flag", "0");
 
 
- 
+ */
 
 
 /*
@@ -188,76 +195,30 @@ if(frist==0){ frist=1;cells[i].scrollIntoView({ block: "center" });console.log("
 
  
 });
-}
+//}
 
 
  
 function cleano() {
  
+let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1"];
+
+
  var table = document.getElementById("OnLine");
- var searchText = "5t1".toLowerCase(); // 将搜索文本转换为小写字母
+ 
  var cells = table.getElementsByTagName("tr");
- //for(var j;j<)
+ for(var j;j<searchText.length;j++){
+ 
  for (var i = 0; i < cells.length; i++) {
  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
- if (cellText.indexOf(searchText) !== -1) {
+ if (cellText.indexOf(searchText[j].toLowerCase()) !== -1) {// 将搜索文本转换为小写字母
    console.log(i);
   document.getElementById("OnLine").deleteRow(i);
    i--;
    
   }
  }
-
-  
-  var searchText = "5t2".toLowerCase(); // 将搜索文本转换为小写字母
- 
-  for (var i = 0; i < cells.length; i++) {
-  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
-  if (cellText.indexOf(searchText) !== -1) {
-   
-    document.getElementById("OnLine").deleteRow(i);
-   i--;
-   
-  }
-  }
-
- var searchText = "6t1".toLowerCase(); // 将搜索文本转换为小写字母
- 
- for (var i = 0; i < cells.length; i++) {
- var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
- if (cellText.indexOf(searchText) !== -1) {
-   
-    document.getElementById("OnLine").deleteRow(i);
-   i--;
-   
-   
-  }
- }
-  var searchText = "6t2".toLowerCase(); // 将搜索文本转换为小写字母
- 
-  for (var i = 0; i < cells.length; i++) {
-  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
-  if (cellText.indexOf(searchText) !== -1) {
-   
-   document.getElementById("OnLine").deleteRow(i);
-   i--;
-   
-  }
-  }
-
-  var searchText = "7T1".toLowerCase(); // 将搜索文本转换为小写字母
- 
-  for (var i = 0; i < cells.length; i++) {
-  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
-  if (cellText.indexOf(searchText) !== -1) {
-   
-   document.getElementById("OnLine").deleteRow(i);
-   i--;
-   
-  }
-  }
-
-
+}
 
 }
  
@@ -330,5 +291,7 @@ window.onload = (event) => {
   console.log('page is fully loaded');
 };
 */
-//如何取消settimeout
-//增加多颜色
+
+
+//document.getElementById("OnMachine").deleteRow(1);
+//<>37 39
