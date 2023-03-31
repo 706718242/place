@@ -17,8 +17,8 @@
   box.style.display = 'block';
   box.style.fontSize = '18px';
 //box.style['background-color'] = "#fff";
-//document.getElementById(box.id).style.color = "white";
-  document.getElementById(box.id).style.color = "block";
+document.getElementById(box.id).style.color = "white";
+  //document.getElementById(box.id).style.color = "block";
 
  var ic=[];
  var keyC=[];
@@ -29,12 +29,12 @@
 
 window.onload = (event) => {
 console.log('page is fully loaded');
- /*
+ 
 if(sessionStorage.getItem("flag")=="1"){
 
 cleano();
 }
-*/
+
 };
 
 
@@ -148,20 +148,20 @@ function tclean() {
    //cells[ic[slot-1]].style.backgroundColor = ""; 
    cells[ic[slot-1]].style.textDecoration = "none";
   }else{ //cells[ic[slot]].style.backgroundColor = "";
-         cells[ic[slot]].style.textDecoration = "none";}
+   cells[ic[slot]].style.textDecoration = "none";}
   if(slot==ic.length){    
      slot=0;
   } 
 
-   
+
 
   cells[ic[slot]].style.backgroundColor = "#ffebb5";
-  //cells[ic[slot]].scrollIntoView();
- // cells[ic[slot]].style.fontSize= "12px";
-  //cells[ic[slot]].style.color = "black";
-  //cells[ic[slot]].style.fontWeight = "bold";
-  //cells[ic[slot]].style.textDecoration = "underline";
-  //cells[ic[slot]].style.padding = "5px";
+  cells[ic[slot]].scrollIntoView({ block: "center" });
+  cells[ic[slot]].style.fontSize= "12px";
+  cells[ic[slot]].style.color = "black";
+  cells[ic[slot]].style.fontWeight = "bold";
+  cells[ic[slot]].style.textDecoration = "underline";
+  cells[ic[slot]].style.padding = "1px";
   
   slot++;
     
@@ -169,13 +169,14 @@ function tclean() {
 
 //是否只显示当前区
  if(event.keyCode==36){
-/* if(sessionStorage.getItem("flag")!="1"){
+if(sessionStorage.getItem("flag")!="1"){
  sessionStorage.setItem("flag", "1");
+ console.log("flags1");
  cleano();
-}else sessionStorage.setItem("flag", "0");
+}else{ sessionStorage.setItem("flag", "0"); console.log("flag1");}
 
 
- */
+ 
 
 
 /*
@@ -213,12 +214,14 @@ let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1"];
  var table = document.getElementById("OnLine");
  
  var cells = table.getElementsByTagName("tr");
- for(var j;j<searchText.length;j++){
- 
+
+
+ for(var j=0;j<searchText.length;j++){
+
  for (var i = 0; i < cells.length; i++) {
  var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
  if (cellText.indexOf(searchText[j].toLowerCase()) !== -1) {// 将搜索文本转换为小写字母
-   console.log(i);
+  
   document.getElementById("OnLine").deleteRow(i);
    i--;
    
@@ -226,6 +229,7 @@ let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1"];
  }
 }
 
+ console.log("co");
 }
  
 
@@ -342,15 +346,100 @@ highlightElements.forEach(function(element) {
 });
 
 
+
+
+//插入表格
+// Find a <table> element with id="myTable":
+var table = document.getElementById("OnLine");
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+var row = table.insertRow(0);
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+var cell3 = row.insertCell(2);
+var cell4 = row.insertCell(3);
+var cell5 = row.insertCell(4);
+// Add some text to the new cells:
+cell1.innerHTML = "NEW CELL1";
+cell2.innerHTML = "NEW CELL2";
+
+
+
+*/
+
+
+
+/*
+const table = document.getElementById("OnMachine");
+const row = table.rows[3]; // 获取第四行数据
+const cells = row.cells;
+const cellData = [];
+for (let i = 0; i < cells.length; i++) {console.log(i);
+  cells[i].innerText="1";
+}
+console.log(cellData);                                            var a =["1","5","2","9","8"];
+ var max = []; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }
+
+
+
+
+const table = document.getElementById("OnMachine");
+const row = table.rows[3]; // 获取第四行数据
+const cells = row.cells;
+const cellData = [];
+for (let i = 0; i < cells.length; i++) {console.log(i);
+  cellData.push(cells[i].innerText);
+}
+console.log(cellData);                                            var a =["1","5","2","9","8"];
+ var max = []; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }
+
+
+
+
+
+const table = document.getElementById("OnMachine");
+const row = table.rows[2]; // 获取第四行数据
+const cells = row.cells;
+const cellData = [];                                                  
+for (let i = 0; i < cells.length; i++) {console.log(i);
+  cellData.push(cells[i].innerText);
+}
+console.log(cellData);                                               var a =[];
+ var max = []; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }                                                                const row1 = table.rows[1]; // 获取第四行数据
+const cells1 = row1.cells;
+                                                         
+for (let i = 0; i < cells.length; i++) {console.log(i);
+  cells1[i].innerHTML='<span id=i>'+cellData[i]+'</span>';
+console.log(cells1[i].innerText);      }
+
+
+
+
 // 获取要添加 id 的 span 元素
 var span = document.querySelector('td span');
 
 // 设置 span 元素的 id 属性
 span.id = 'cell-span';
-
-
-
-
 
 
 */
