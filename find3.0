@@ -1,6 +1,6 @@
 
-//if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
-//{
+if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
+{
   console.log("start");
   box = document.createElement('tbox');
   box.id = 'tboxid';
@@ -122,9 +122,19 @@ function tclean() {
 //if(frist==0){ 
  //frist=1;cells[i].scrollIntoView({ block: "center" });
    //console.log("i");   
- 
- cells[i].style.backgroundColor = "#ffebb5";
-    //cells[ic[slot]].style.border= "5px solid black";
+  cells[i].innerHTML ='<h>'+ cells[i].innerHTML+'</h>' ;
+//cells[i].style.backgroundColor = "#ffebb5";
+  
+   
+   cells[i].querySelector ('h').style.backgroundColor = "#337ab7";
+   cells[i].querySelector ('h').style.color = "white";
+   //var span =  cells[i].querySelector('td span');
+ // 设置 span 元素的 id 属性
+   
+   //span.style.backgroundColor = "#";
+   
+//  span.style.color = "white";
+   //cells[ic[slot]].style.border= "5px solid black";
    }
  }
 }
@@ -146,22 +156,23 @@ function tclean() {
 
    if(slot>0){
    //cells[ic[slot-1]].style.backgroundColor = ""; 
-   cells[ic[slot-1]].style.textDecoration = "none";
+  // cells[ic[slot-1]].style.textDecoration = "none";
   }else{ //cells[ic[slot]].style.backgroundColor = "";
-   cells[ic[slot]].style.textDecoration = "none";}
+   //cells[ic[slot]].style.textDecoration = "none";
+   }
   if(slot==ic.length){    
      slot=0;
   } 
 
 
 
-  cells[ic[slot]].style.backgroundColor = "#ffebb5";
+ // cells[ic[slot]].style.backgroundColor = "#dc3545";
   cells[ic[slot]].scrollIntoView({ block: "center" });
-  cells[ic[slot]].style.fontSize= "12px";
-  cells[ic[slot]].style.color = "black";
-  cells[ic[slot]].style.fontWeight = "bold";
-  cells[ic[slot]].style.textDecoration = "underline";
-  cells[ic[slot]].style.padding = "1px";
+  //cells[ic[slot]].style.fontSize= "12px";
+  //cells[ic[slot]].style.color = "black";
+  //cells[ic[slot]].style.fontWeight = "bold";
+  //cells[ic[slot]].style.textDecoration = "underline";
+ 
   
   slot++;
     
@@ -202,13 +213,12 @@ if(sessionStorage.getItem("flag")!="1"){
 
  
 });
-//}
 
 
  
 function cleano() {
  
-let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1"];
+let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1", "7t5", "7t6"];
 
 
  var table = document.getElementById("OnLine");
@@ -228,11 +238,28 @@ let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1"];
   }
  }
 }
+ var table = document.getElementById("OnMachine");
+ 
+ var cells = table.getElementsByTagName("tr");
 
+
+ for(var j=0;j<searchText.length;j++){
+
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText[j].toLowerCase()) !== -1) {// 将搜索文本转换为小写字母
+  
+  document.getElementById("OnMachine").deleteRow(i);
+   i--;
+   
+  }
+ }
+}
  console.log("co");
 }
  
 
+}
 
 
 //perpetual data
@@ -372,65 +399,28 @@ cell2.innerHTML = "NEW CELL2";
 
 
 /*
-const table = document.getElementById("OnMachine");
-const row = table.rows[3]; // 获取第四行数据
-const cells = row.cells;
-const cellData = [];
-for (let i = 0; i < cells.length; i++) {console.log(i);
-  cells[i].innerText="1";
-}
-console.log(cellData);                                            var a =["1","5","2","9","8"];
- var max = []; 
- var d = a.length*a.length;
- for(var j=0; j<d;j++){
- for (var i = 1; i < a.length; i++) {
- if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
-
- } }
-
 
 
 
 const table = document.getElementById("OnMachine");
-const row = table.rows[3]; // 获取第四行数据
-const cells = row.cells;
-const cellData = [];
-for (let i = 0; i < cells.length; i++) {console.log(i);
-  cellData.push(cells[i].innerText);
-}
-console.log(cellData);                                            var a =["1","5","2","9","8"];
- var max = []; 
- var d = a.length*a.length;
- for(var j=0; j<d;j++){
- for (var i = 1; i < a.length; i++) {
- if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+//table.rows[2].cells[]; // 获取第四行数据
 
- } }
-
-
-
-
-
-const table = document.getElementById("OnMachine");
-const row = table.rows[2]; // 获取第四行数据
-const cells = row.cells;
 const cellData = [];                                                  
-for (let i = 0; i < cells.length; i++) {console.log(i);
-  cellData.push(cells[i].innerText);
+for (let i = 0; i < table.rows.length; i++) {console.log(i);
+  cellData.push(table.rows[2].cells[2].innerText);
 }
-console.log(cellData);                                               var a =[];
+console.log(cellData);                                               var a=[];
  var max = []; 
  var d = a.length*a.length;
  for(var j=0; j<d;j++){
  for (var i = 1; i < a.length; i++) {
  if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
 
- } }                                                                const row1 = table.rows[1]; // 获取第四行数据
-const cells1 = row1.cells;
+ } }                                                                
                                                          
-for (let i = 0; i < cells.length; i++) {console.log(i);
-  cells1[i].innerHTML='<span id=i>'+cellData[i]+'</span>';
-console.log(cells1[i].innerText);      }
+for (let i = 0; i < table.rows.length; i++) {console.log(i);
+  table.rows[2].cells[2].innerHTML='<span id=i>'+cellData[i]+'</span>';
+console.log( table.rows[2].cells[2].innerText);      }
 
 
 
@@ -442,4 +432,9 @@ var span = document.querySelector('td span');
 span.id = 'cell-span';
 
 
+
+
+
+//当前时间
+console.log(Date());
 */
