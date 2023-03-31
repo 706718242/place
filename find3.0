@@ -122,7 +122,9 @@ function tclean() {
 //if(frist==0){ 
  //frist=1;cells[i].scrollIntoView({ block: "center" });
    //console.log("i");   
+ 
  cells[i].style.backgroundColor = "#ffebb5";
+    //cells[ic[slot]].style.border= "5px solid black";
    }
  }
 }
@@ -153,13 +155,14 @@ function tclean() {
 
    
 
-  //cells[ic[slot]].style.backgroundColor = "#ffebb5";
-  cells[ic[slot]].scrollIntoView();
-  cells[ic[slot]].style.fontSize= "14px";
-  cells[ic[slot]].style.color = "black";
-  cells[ic[slot]].style.fontWeight = "bold";
-  cells[ic[slot]].style.textDecoration = "underline";
-  //cells[ic[slot]].innerHTML = "<u>" + cells[ic[slot]].innerHTML + "</u>";
+  cells[ic[slot]].style.backgroundColor = "#ffebb5";
+  //cells[ic[slot]].scrollIntoView();
+ // cells[ic[slot]].style.fontSize= "12px";
+  //cells[ic[slot]].style.color = "black";
+  //cells[ic[slot]].style.fontWeight = "bold";
+  //cells[ic[slot]].style.textDecoration = "underline";
+  //cells[ic[slot]].style.padding = "5px";
+  
   slot++;
     
  }
