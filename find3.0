@@ -51,14 +51,15 @@ function clean() {
   slot=0;
  ic.length=0;
   search=0;
+ 
  //document.getElementById(box.id).innerHTML = "";
 
   
 }
 
 function tclean() {
-
  keyC.length = 0;
+
  console.log("cleanflag");
  document.getElementById(box.id).innerHTML = "";
 
@@ -96,6 +97,7 @@ function tclean() {
   }
  
   if(event.key=="Backspace"){
+   if(search==1){clean();}
    keyC.pop();
    document.getElementById(box.id).innerHTML = keyC.join('');
 
@@ -104,7 +106,7 @@ function tclean() {
 
    //keyC = "";
    console.log(keyC);
-   search=0;
+   
   }
 //Enter
   if(event.key=="Enter"){
@@ -126,7 +128,7 @@ function tclean() {
 //cells[i].style.backgroundColor = "#ffebb5";
   
    
-   cells[i].querySelector ('h').style.backgroundColor = "#337ab7";
+   cells[i].querySelector ('h').style.backgroundColor = "#1E90FF";
    cells[i].querySelector ('h').style.color = "white";
    //var span =  cells[i].querySelector('td span');
  // 设置 span 元素的 id 属性
@@ -164,9 +166,7 @@ function tclean() {
      slot=0;
   } 
 
-
-
- // cells[ic[slot]].style.backgroundColor = "#dc3545";
+  cells[ic[slot]].style.backgroundColor = "#ffebb5";
   cells[ic[slot]].scrollIntoView({ block: "center" });
   //cells[ic[slot]].style.fontSize= "12px";
   //cells[ic[slot]].style.color = "black";
@@ -432,9 +432,9 @@ var span = document.querySelector('td span');
 span.id = 'cell-span';
 
 
-
-
-
+//增加清除所有背景色函数
+//鼠标在文本上方改变颜色
+//自己训练语音识别
 //当前时间
 console.log(Date());
 */
