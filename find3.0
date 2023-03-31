@@ -342,7 +342,11 @@ highlightElements.forEach(function(element) {
 });
 
 
+// 获取要添加 id 的 span 元素
+var span = document.querySelector('td span');
 
+// 设置 span 元素的 id 属性
+span.id = 'cell-span';
 
 
 
