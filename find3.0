@@ -338,22 +338,10 @@ window.onload = (event) => {
 
 
 
-//高亮实现  创建span元素与id
+
 /*
 
 
-var content = document.getElementById("OnMachine");
-  var selection = window.getSelection();
-  selection.removeAllRanges();
-  if (window.find("2905")) {
-    var range = selection.getRangeAt(0);
-    var highlight = document.createElement("span");
-    //highlight.classList.add("mclass");
-    highlight.setAttribute("id", "mdiv");
-    highlight.style.backgroundColor = "yellow";
-    highlight.appendChild(range.extractContents());
-    range.insertNode(highlight);
-  }
 
 
   遍历所有高亮元素，移除其高亮样式
@@ -433,8 +421,7 @@ span.id = 'cell-span';
 
 
 //增加清除所有背景色函数
-//鼠标在文本上方改变颜色
-//自己训练语音识别
+
 //当前时间
 console.log(Date());
 */
