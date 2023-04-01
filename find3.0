@@ -344,16 +344,6 @@ window.onload = (event) => {
 
 
 
-  遍历所有高亮元素，移除其高亮样式
-var highlightElements = document.getElementsByClassName("highlight");
-highlightElements.forEach(function(element) {
-  element.style.backgroundColor = "";
-});
-// 或
-for (var i = 0; i < highlightElements.length; i++) {
-  highlightElements[i].style.backgroundColor = "";
-}
-
 通过重置 CSS 类名来移除相应的高亮效果
 
 highlightElements.forEach(function(element) {
@@ -389,13 +379,12 @@ cell2.innerHTML = "NEW CELL2";
 /*
 
 
-
 const table = document.getElementById("OnMachine");
 //table.rows[2].cells[]; // 获取第四行数据
 
 const cellData = [];                                                  
 for (let i = 0; i < table.rows.length; i++) {console.log(i);
-  cellData.push(table.rows[2].cells[2].innerText);
+  cellData.push(table.rows[i].cells[3].innerText);
 }
 console.log(cellData);                                               var a=[];
  var max = []; 
@@ -407,15 +396,13 @@ console.log(cellData);                                               var a=[];
  } }                                                                
                                                          
 for (let i = 0; i < table.rows.length; i++) {console.log(i);
-  table.rows[2].cells[2].innerHTML='<span id=i>'+cellData[i]+'</span>';
-console.log( table.rows[2].cells[2].innerText);      }
-
+  table.rows[i].cells[3].innerHTML='<span id=i>'+cellData[i]+'</span>';
+console.log( table.rows[i].cells[3].innerText);  
 
 
 
 // 获取要添加 id 的 span 元素
 var span = document.querySelector('td span');
-
 // 设置 span 元素的 id 属性
 span.id = 'cell-span';
 
