@@ -1,5 +1,5 @@
 
-if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
+//if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
 {
   console.log("start");
   box = document.createElement('tbox');
@@ -43,13 +43,16 @@ function clean() {
   var table = document.getElementById("OnMachine");
   var cells = table.getElementsByTagName("td");
   for (var i = 0; i < ic.length; i++) {
- 
+ //恢复表格背景 搜索结果背景与字体颜色
   cells[ic[i]].style.backgroundColor = "";
+  cells[ic[i]].querySelector ('h').style.backgroundColor = "";
+  cells[ic[i]].querySelector ('h').style.color = "#337ab7";
+   
  }
  
   console.log("cleanSearch");
   slot=0;
- ic.length=0;
+  ic.length=0;
   search=0;
  
  //document.getElementById(box.id).innerHTML = "";
@@ -124,19 +127,10 @@ function tclean() {
 //if(frist==0){ 
  //frist=1;cells[i].scrollIntoView({ block: "center" });
    //console.log("i");   
-  cells[i].innerHTML ='<h>'+ cells[i].innerHTML+'</h>' ;
-//cells[i].style.backgroundColor = "#ffebb5";
-  
+  cells[i].innerHTML ='<h>'+ cells[i].innerHTML+'</h>' ;//增加<h>以便设置搜索结果样式
+  cells[i].style.backgroundColor = "#ffebb5";//浅黄
    
-   cells[i].querySelector ('h').style.backgroundColor = "#1E90FF";
-   cells[i].querySelector ('h').style.color = "white";
-   //var span =  cells[i].querySelector('td span');
- // 设置 span 元素的 id 属性
-   
-   //span.style.backgroundColor = "#";
-   
-//  span.style.color = "white";
-   //cells[ic[slot]].style.border= "5px solid black";
+
    }
  }
 }
@@ -157,16 +151,22 @@ function tclean() {
   var cells = table.getElementsByTagName("td");
 
    if(slot>0){
+  cells[ic[slot-1]].querySelector ('h').style.backgroundColor = "";
+  cells[ic[slot-1]].querySelector ('h').style.color = "#337ab7";//浅蓝
    //cells[ic[slot-1]].style.backgroundColor = ""; 
   // cells[ic[slot-1]].style.textDecoration = "none";
-  }else{ //cells[ic[slot]].style.backgroundColor = "";
+  }else{ 
+  cells[ic[slot]].querySelector ('h').style.backgroundColor = "";
+  cells[ic[slot]].querySelector ('h').style.color = "#337ab7";
+    //cells[ic[slot]].style.backgroundColor = "";
    //cells[ic[slot]].style.textDecoration = "none";
    }
   if(slot==ic.length){    
      slot=0;
   } 
 
-  cells[ic[slot]].style.backgroundColor = "#ffebb5";
+  cells[ic[slot]].querySelector ('h').style.backgroundColor = "#1E90FF";//搜索结果背景
+  cells[ic[slot]].querySelector ('h').style.color = "white";//搜索结果字体颜色
   cells[ic[slot]].scrollIntoView({ block: "center" });
   //cells[ic[slot]].style.fontSize= "12px";
   //cells[ic[slot]].style.color = "black";
@@ -419,8 +419,6 @@ var span = document.querySelector('td span');
 // 设置 span 元素的 id 属性
 span.id = 'cell-span';
 
-
-//增加清除所有背景色函数
 
 //当前时间
 console.log(Date());
