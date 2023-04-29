@@ -7,3 +7,89 @@ getWindow().setAttributes(params);
 这段代码将 WindowManager.LayoutParams 对象的 screenBrightness 属性设置为 0，表示将屏幕亮度设置为最低值（即关闭）。然后将 flags 属性设置为 FLAG_KEEP_SCREEN_ON，表示屏幕保持一直开启，直到应用程序取消这个标记。最后，使用 getWindow().setAttributes() 方法应用新的窗口属性。
 需要注意的是，这种方法可能会耗费比较多的电能，因为屏幕将一直处于开启状态。对于手机等移动设备，这可能会消耗大量的电量，并缩短电池寿命。因此，在实现时需要根据实际需求和场景进行权衡和调整。
 总的来说，通过设置 WindowManager 的 setBrightness() 方法，我们可以比较容易地实现只关闭屏幕而不休眠的功能。
+
+
+在 Kotlin 中，可以通过以下步骤创建一个悬浮窗：
+
+创建悬浮窗口的权限
+
+首先，你需要在你的 application manifest 文件中声明 android.permission.SYSTEM_ALERT_WINDOW 权限。
+&lt;uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /&gt;
+
+
+创建一个 Service 类
+
+Service 类是一个在后台运行的组件，可以用来创建悬浮窗口。在 Service 类里，我们需要实现以下方法：
+override fun onBind(intent: Intent?): IBinder? {
+    return null
+}
+
+override fun onCreate() {
+    super.onCreate()
+
+    // 创建悬浮窗
+    createFloatingWindowView()
+}
+
+override fun onDestroy() {
+    super.onDestroy()
+
+    // 移除悬浮窗
+    removeFloatingWindowView()
+}
+
+在 onCreate 方法中，实现创建悬浮窗口的逻辑，而在 onDestroy 方法里，实现移除悬浮窗口的逻辑。
+
+创建悬浮视图
+
+在 Service 类中，我们需要实现 createFloatingWindowView() 方法，该方法将创建悬浮窗口。
+private fun createFloatingWindowView() {
+    // 获取 WindowManager 对象
+    val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+
+    // 创建悬浮窗口参数
+    val params = WindowManager.LayoutParams()
+    params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+    params.format = PixelFormat.TRANSLUCENT
+    params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+            WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+    params.width = WindowManager.LayoutParams.WRAP_CONTENT
+    params.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+    // 创建悬浮窗口视图
+    val floatingView = LayoutInflater.from(this).inflate(R.layout.floating_window_layout, null)
+
+    // 设置悬浮窗口视图中的交互逻辑
+    floatingView.findViewById&lt;Button&gt;(R.id.close_button).setOnClickListener {
+        // 点击关闭按钮时关闭悬浮窗口
+        stopSelf()
+    }
+
+    // 将悬浮窗口添加到 WindowManager 中
+    windowManager.addView(floatingView, params)
+}
+
+在这个方法中，我们首先获得了 WindowManager 对象，然后通过 WindowManager.LayoutParams 类创建了悬浮窗口的参数，其中 TYPE_APPLICATION_OVERLAY 是用于创建悬浮窗口的类型， FLAG_NOT_FOCUSABLE，FLAG_NOT_TOUCH_MODAL，FLAG_LAYOUT_IN_SCREEN 是创建悬浮窗口的参数。接下来，我们使用 LayoutInflater 类从 XML 文件中获取悬浮视图，并设置其中各元素的事件。
+
+移除悬浮视图
+
+在 Service 类中，我们需要实现 removeFloatingWindowView() 方法，该方法将移除悬浮窗口。
+private fun removeFloatingWindowView() {
+    val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    try {
+        // 移除悬浮窗口
+        windowManager.removeView(floatingView)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+
+在此方法中，我们所做的就是通过 WindowManager 移除已创建的悬浮窗口。
+
+启动悬浮窗口服务
+
+最后，在您的应用程序中的任何 Activity 中，您可以使用以下代码启动您的悬浮窗口服务：
+startService(Intent(this, FloatingWindowService::class.java))
+
+请注意，上述代码中的 FloatingWindowService 是您创建的悬浮窗口服务类的名称。
