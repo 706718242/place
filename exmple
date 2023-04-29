@@ -1,0 +1,9 @@
+如果您想仅仅关闭屏幕而不休眠设备，可以使用 WindowManager 的 setBrightness() 方法。该方法可以设置屏幕亮度，并在必要时关闭和重新开启屏幕。下面是一份示例代码：
+WindowManager.LayoutParams params = getWindow().getAttributes();
+params.screenBrightness = 0;
+params.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+getWindow().setAttributes(params);
+
+这段代码将 WindowManager.LayoutParams 对象的 screenBrightness 属性设置为 0，表示将屏幕亮度设置为最低值（即关闭）。然后将 flags 属性设置为 FLAG_KEEP_SCREEN_ON，表示屏幕保持一直开启，直到应用程序取消这个标记。最后，使用 getWindow().setAttributes() 方法应用新的窗口属性。
+需要注意的是，这种方法可能会耗费比较多的电能，因为屏幕将一直处于开启状态。对于手机等移动设备，这可能会消耗大量的电量，并缩短电池寿命。因此，在实现时需要根据实际需求和场景进行权衡和调整。
+总的来说，通过设置 WindowManager 的 setBrightness() 方法，我们可以比较容易地实现只关闭屏幕而不休眠的功能。
